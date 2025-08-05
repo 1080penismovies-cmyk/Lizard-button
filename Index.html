@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lizard Clicker</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #f0f0f0;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    #counter {
+      font-size: 2em;
+      margin-top: 30px;
+    }
+
+    #click-button {
+      font-size: 5em;
+      margin-top: 50px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      outline: none;
+    }
+
+    .lizard-emoji {
+      position: absolute;
+      font-size: 3em;
+      pointer-events: none;
+      animation: fadeOut 1s ease-out forwards;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(2); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="counter">Clicks: 0</div>
+  <button id="click-button">🦎</button>
+
+  <audio id="lizard-sound" src="Lizard.mp3"></audio>
+
+  <script>
+    const button = document.getElementById('click-button');
+    const counter = document.getElementById('counter');
+    const sound = document.getElementById('lizard-sound');
+
+    let clicks = 0;
+
+    button.addEventListener('click', () => {
+      clicks++;
+      counter.textContent = `Clicks: ${clicks}`;
+
+      sound.currentTime = 0;
+      sound.play();
+
+      spawnLizard();
+    });
+
+    function spawnLizard() {
+      const emoji = document.createElement('div');
+      emoji.className = 'lizard-emoji';
+      emoji.textContent = '🦎';
+
+      const x = Math.random() * (window.innerWidth - 50);
+      const y = Math.random() * (window.innerHeight - 50);
+
+      emoji.style.left = `${x}px`;
+      emoji.style.top = `${y}px`;
+
+      document.body.appendChild(emoji);
+
+      setTimeout(() => {
+        emoji.remove();
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>
