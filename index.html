@@ -51,11 +51,14 @@
     const counter = document.getElementById('counter');
     const sound = document.getElementById('lizard-sound');
 
-    let clicks = 0;
+    // Load saved clicks or start at 0
+    let clicks = parseInt(localStorage.getItem('lizardClicks')) || 0;
+    counter.textContent = `Clicks: ${clicks}`;
 
     button.addEventListener('click', () => {
       clicks++;
       counter.textContent = `Clicks: ${clicks}`;
+      localStorage.setItem('lizardClicks', clicks); // Save to localStorage
 
       sound.currentTime = 0;
       sound.play();
