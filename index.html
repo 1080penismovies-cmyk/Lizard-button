@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Lizard Button</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
   <style>
-    body {
+    html, body {
       margin: 0;
       font-family: sans-serif;
       background: #f0f0f0;
@@ -13,6 +15,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      touch-action: manipulation; /* Prevent double-tap zoom */
     }
 
     .ui-wrapper {
@@ -103,16 +106,6 @@
       emoji.style.left = `${x}px`;
       emoji.style.top = `${y}px`;
 
-      document.body.appendChild(emoji);
-
-      setTimeout(() => {
-        emoji.remove();
-      }, 1000);
-    }
-  </script>
-
-</body>
-</html>
       document.body.appendChild(emoji);
 
       setTimeout(() => {
