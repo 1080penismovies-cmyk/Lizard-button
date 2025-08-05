@@ -2,28 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Lizard Clicker</title>
+  <title>Lizard Button</title>
   <style>
     body {
       margin: 0;
       font-family: sans-serif;
       background: #f0f0f0;
       overflow: hidden;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      padding-top: 40px;
     }
 
     #counter {
       font-size: 2em;
-      margin-top: 30px;
+      background: white;
+      padding: 10px 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 40px;
     }
 
     #click-button {
-      font-size: 5em;
-      margin-top: 50px;
-      cursor: pointer;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: white;
       border: none;
-      background: none;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      font-size: 5em;
+      cursor: pointer;
       outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.1s ease;
+    }
+
+    #click-button:active {
+      transform: scale(0.95);
     }
 
     .lizard-emoji {
@@ -51,14 +71,13 @@
     const counter = document.getElementById('counter');
     const sound = document.getElementById('lizard-sound');
 
-    // Load saved clicks or start at 0
     let clicks = parseInt(localStorage.getItem('lizardClicks')) || 0;
     counter.textContent = `Clicks: ${clicks}`;
 
     button.addEventListener('click', () => {
       clicks++;
       counter.textContent = `Clicks: ${clicks}`;
-      localStorage.setItem('lizardClicks', clicks); // Save to localStorage
+      localStorage.setItem('lizardClicks', clicks);
 
       sound.currentTime = 0;
       sound.play();
